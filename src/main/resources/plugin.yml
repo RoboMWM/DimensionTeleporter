@@ -6,17 +6,22 @@ commands:
    dt:
       description: Teleport to a dimension or loaded world.
       usage: /dt <world name>
-      permission: DimensionTeleporter.dt
+      permission: dimensionteleporter.dt
       permission-message: You don't have DimensionTeleporter.dt
    dtp:
       description: Teleport to a dimension or loaded world.
       usage: /dtp <world name> <player>
-      permission: DimensionTeleporter.dtp
+      permission: dimensionteleporter.dtp
       permission-message: You don't have DimensionTeleporter.dtp
 permissions:
-    DimensionTeleporter.dt:
+    dimensionteleporter.*:
+        description: Grants ALL THE THINGS
+        children:
+            DimensionTeleporter.dt: true
+            DimensionTeleporter.dtp: true
+    dimensionteleporter.dt:
         description: Permission to /dt
         default: op
-    DimensionTeleporter.dtp:
+    dimensionteleporter.dtp:
         description: Permission to /dtp
         default: op

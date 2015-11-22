@@ -60,5 +60,6 @@ $RECYCLE.BIN/
 # ZEINTELLIJ
 *.xml
 out/
+target/
 *.MF
 *.name
