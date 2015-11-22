@@ -1,0 +1,22 @@
+name: DimensionTeleporter
+author: RoboMWM
+version: ${project.version}
+main: me.robomwm.DimensionTeleporter.Main
+commands:
+   dt:
+      description: Teleport to a dimension or loaded world.
+      usage: /dt <world name>
+      permission: DimensionTeleporter.dt
+      permission-message: You don't have DimensionTeleporter.tp
+   dtp:
+      description: Teleport to a dimension or loaded world.
+      usage: /dtp <world name> <player>
+      permission: DimensionTeleporter.dtp
+      permission-message: You don't have DimensionTeleporter.tp
+permissions:
+    DimensionTeleporter.dt:
+        description: Permission to /dt
+        default: op
+    DimensionTeleporter.dtp:
+        description: Permission to /dtp
+        default: op
