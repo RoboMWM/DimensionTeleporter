@@ -25,7 +25,7 @@ public class Main extends JavaPlugin
         if (cmd.getName().equalsIgnoreCase("dt"))
         {
             if (args.length < 1)
-                sender.sendMessage("/dt <world name>");
+                return false;
             if (!(sender instanceof Player))
             {
                 sender.sendMessage("Use /dtp <world name> <player>");
@@ -33,7 +33,17 @@ public class Main extends JavaPlugin
             else
             {
                 Player player = (Player)sender;
+//                if (!player.hasPermission("DimensionTeleporter.dt"))
+//                {
+//                    sender.sendMessage("You do not have the DimensionTeleporter.dt permission node");
+//                    return true;
+//                }
                 World dest = Bukkit.getWorld(args[0]);
+                if (dest == null)
+                {
+                    sender.sendMessage("World " + args[0] + " is not loaded.");
+                    return false;
+                }
                 Location spawn = dest.getSpawnLocation();
                 player.teleport(spawn);
             }
@@ -42,16 +52,32 @@ public class Main extends JavaPlugin
         else if (cmd.getName().equalsIgnoreCase("dtp"))
         {
             if (args.length < 2)
-                sender.sendMessage("/dtp <world name> <player>");
+                return false;
+//            if ((sender instanceof Player))
+//            {
+//                Player p = (Player)sender;
+//                if (!p.hasPermission("DimensionTeleporter.dtp"))
+//                {
+//                    sender.sendMessage("You do not have the DimensionTeleporter.dtp permission node");
+//                    return true;
+//                }
+//            }
             Player player = (Bukkit.getPlayer(args[1]));
             if (player == null)
             {
-                sender.sendMessage(args[0] + " is not online!");
+                sender.sendMessage("Player \"" + args[1] + "\" is not online.");
                 return false;
             }
             World dest = Bukkit.getWorld(args[0]);
+            if (dest == null)
+            {
+                sender.sendMessage("World \"" + args[0] + "\" is not loaded.");
+                return false;
+            }
             Location spawn = dest.getSpawnLocation();
             player.teleport(spawn);
+            sender.sendMessage("Teleported " + player.getName() + " to " + dest.getName());
+            return true;
         }
         return false;
     }
