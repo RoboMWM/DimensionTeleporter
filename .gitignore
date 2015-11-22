@@ -58,7 +58,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 # ZEINTELLIJ
-*.xml
 out/
 target/
 *.MF
