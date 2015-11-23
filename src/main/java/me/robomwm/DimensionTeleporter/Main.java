@@ -102,6 +102,20 @@ public class Main extends JavaPlugin
             sender.sendMessage(ChatColor.GREEN + "Teleported " + player.getName() + " to " + dest.getName());
             return true;
         }
+        else if (cmd.getName().equalsIgnoreCase("dtspawn"))
+        {
+            if (!(sender instanceof Player))
+            {
+                sender.sendMessage("Use /dtp <world name> <player>");
+            }
+            else
+            {
+                Player player = (Player)sender;
+                Location spawn = player.getWorld().getSpawnLocation();
+                player.teleport(spawn);
+            }
+            return true;
+        }
         return false;
     }
 }

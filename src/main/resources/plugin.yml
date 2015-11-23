@@ -7,21 +7,30 @@ commands:
       description: Teleport to a dimension or loaded world.
       usage: /dt <world name>
       permission: dimensionteleporter.dt
-      permission-message: You don't have DimensionTeleporter.dt
+      permission-message: You don't have dimensionteleporter.dt
    dtp:
       description: Teleport to a dimension or loaded world.
       usage: /dtp <world name> <player>
       permission: dimensionteleporter.dtp
-      permission-message: You don't have DimensionTeleporter.dtp
+      permission-message: You don't have dimensionteleporter.dtp
+   dtspawn:
+      description: Teleport to the current worlds' spawn.
+      usage: /dtspawn
+      permission: dimensionteleporter.dtspawn
+      permission-message: You don't have dimensionteleporter.dtspawn
 permissions:
     dimensionteleporter.*:
         description: Grants ALL THE THINGS
         children:
-            DimensionTeleporter.dt: true
-            DimensionTeleporter.dtp: true
+            dimensionteleporter.dt: true
+            dimensionteleporter.dtp: true
+            dimensionteleporter.dtspawn: true
     dimensionteleporter.dt:
         description: Permission to /dt
         default: op
     dimensionteleporter.dtp:
         description: Permission to /dtp
+        default: op
+    dimensionteleporter.dtspawn:
+        description: Permissions to /dtspawn
         default: op
