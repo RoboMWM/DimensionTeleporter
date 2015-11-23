@@ -28,10 +28,10 @@ public class Main extends JavaPlugin
         {
             if (args.length < 1)
             {
-                sender.sendMessage("Loaded worlds:");
+                sender.sendMessage(ChatColor.YELLOW + "Loaded worlds:");
                 ListIterator<World> worlds = Bukkit.getWorlds().listIterator();
                 while (worlds.hasNext())
-                    sender.sendMessage(worlds.next().getName());
+                    sender.sendMessage(ChatColor.GOLD + worlds.next().getName());
                 return false;
             }
 
