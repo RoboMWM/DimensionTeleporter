@@ -58,6 +58,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 # ZEINTELLIJ
+workspace.xml
+tasks.xml
 out/
 target/
 *.MF
