@@ -1,5 +1,6 @@
 name: DimensionTeleporter
 author: RoboMWM
+website: https://www.spigotmc.org/resources/dimension-teleporter.14807/
 version: ${project.version}
 main: me.robomwm.DimensionTeleporter.Main
 commands:
