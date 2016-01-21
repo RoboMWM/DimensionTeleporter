@@ -81,7 +81,7 @@ public class Main extends JavaPlugin
 //                    return true;
 //                }
 //            }
-            Player player = (Bukkit.getPlayer(args[1]));
+            Player player = (Bukkit.getPlayerExact(args[1]));
             if (player == null)
             {
                 sender.sendMessage(ChatColor.RED + "Player \"" + args[1] + "\" is not online.");
