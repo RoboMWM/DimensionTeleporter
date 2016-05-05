@@ -8,18 +8,19 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.HashSet;
 import java.util.ListIterator;
+import java.util.Set;
 
 /**
  * Created by Robo on 11/21/2015.
  */
 public class Main extends JavaPlugin
 {
-    @Override
-    public void onEnable()
-    {
 
-    }
+    Set<Player> cooldownPlayers = new HashSet<Player>();
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
@@ -47,6 +48,11 @@ public class Main extends JavaPlugin
 //                    sender.sendMessage("You do not have the DimensionTeleporter.dt permission node");
 //                    return true;
 //                }
+                if (cooldownPlayers.contains(player))
+                {
+                    sender.sendMessage(ChatColor.RED + "Please wait a few seconds before teleporting again.");
+                    return true;
+                }
                 World dest = Bukkit.getWorld(args[0]);
                 if (dest == null)
                 {
@@ -57,8 +63,8 @@ public class Main extends JavaPlugin
                     sender.sendMessage(ChatColor.RED + "World \"" + args[0] + "\" is not loaded.");
                     return false;
                 }
-                Location spawn = dest.getSpawnLocation();
-                player.teleport(spawn);
+                addToCooldown(player);
+                player.teleport(dest.getSpawnLocation());
             }
             return true;
         }
@@ -97,8 +103,7 @@ public class Main extends JavaPlugin
                 sender.sendMessage(ChatColor.RED + "World \"" + args[0] + "\" is not loaded.");
                 return false;
             }
-            Location spawn = dest.getSpawnLocation();
-            player.teleport(spawn);
+            player.teleport(dest.getSpawnLocation());
             sender.sendMessage(ChatColor.GREEN + "Teleported " + player.getName() + " to " + dest.getName());
             return true;
         }
@@ -111,11 +116,21 @@ public class Main extends JavaPlugin
             else
             {
                 Player player = (Player)sender;
-                Location spawn = player.getWorld().getSpawnLocation();
-                player.teleport(spawn);
+                player.teleport(player.getWorld().getSpawnLocation());
             }
             return true;
         }
         return false;
+    }
+    void addToCooldown(final Player player)
+    {
+        cooldownPlayers.add(player);
+        new BukkitRunnable()
+        {
+            public void run()
+            {
+                cooldownPlayers.remove(player);
+            }
+        }.runTaskLater(this, 200L);
     }
 }
